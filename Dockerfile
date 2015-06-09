@@ -11,7 +11,7 @@ CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
 RUN apt-get update
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nginx php5-fpm php5-cli
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nginx php5-fpm php5-cli git
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ && mv /usr/bin/composer.phar /usr/bin/composer
 
 ADD ./nginx/default /etc/nginx/sites-available/default
