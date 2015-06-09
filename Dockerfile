@@ -11,8 +11,10 @@ CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
 RUN apt-get update
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nginx php5-fpm php5-cli git
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nginx php5-fpm php5-cli git nodejs npm
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ && mv /usr/bin/composer.phar /usr/bin/composer
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN npm install -g bower
 
 ADD ./nginx/default /etc/nginx/sites-available/default
 ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
